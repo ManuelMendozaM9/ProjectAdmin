@@ -21,12 +21,45 @@ public class DAOProveedorImpl extends Conexion implements DAOProveedor {
 
     @Override
     public void registrar(Proveedor prov) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "insert into proveedor(nombre,direccion,telefono,forma_pago,"
+                            + "rfc,status) values(?,?,?,?,?,?)");
+            st.setString(1, prov.getNombre());
+            st.setString(2, prov.getDireccion());
+            st.setInt(3, prov.getTelefono());
+            st.setString(4, prov.getFormaPago());
+            st.setString(5, prov.getRFC());
+            st.setString(6, prov.getStatus());
+            st.executeQuery();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
 
     @Override
     public void modificar(Proveedor prov) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "update proveedor set nombre = ?, direccion = ?, telefono = ?"
+                    + "forma_pago = ?, rfc = ?, status = ? where proveedor_ID = ?");
+            st.setString(1, prov.getNombre());
+            st.setString(2, prov.getDireccion());
+            st.setInt(3, prov.getTelefono());
+            st.setString(4, prov.getFormaPago());
+            st.setString(5, prov.getRFC());
+            st.setString(6, prov.getStatus());
+            st.setInt(7, prov.getProveedor_ID());
+            st.executeUpdate();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
 
     @Override
@@ -60,7 +93,7 @@ public class DAOProveedorImpl extends Conexion implements DAOProveedor {
                 prov.setTelefono(rs.getInt("Telefono"));
                 prov.setFormaPago(rs.getString("Forma_Pago"));
                 prov.setRFC(rs.getString("RFC"));
-                prov.setStatus(rs.getBoolean("Status"));
+                prov.setStatus(rs.getString("Status"));
             }
             rs.close();
             st.close();   

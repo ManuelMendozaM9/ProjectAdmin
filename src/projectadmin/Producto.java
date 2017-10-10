@@ -11,7 +11,7 @@ package projectadmin;
  */
 public class Producto {
     Integer productoID, cantidadUnidadMedida;
-    String nombre, descripcion, unidadMedida, categoria;
+    String nombre, descripcion, unidadMedida, categoria, status;
     Double precio;
 
     public Integer getProductoID() {
@@ -68,6 +68,14 @@ public class Producto {
 
     public void setCantidadUnidadMedida(Integer cantidadUnidadMedida) {
         this.cantidadUnidadMedida = cantidadUnidadMedida;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

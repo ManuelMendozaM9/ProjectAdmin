@@ -10,9 +10,9 @@ package projectadmin;
  * @author Manuel
  */
 public class Proveedor {
-    String nombre, direccion, RFC, formaPago;
+    String nombre, direccion, RFC, formaPago, status;
     Integer telefono, proveedor_ID;
-
+    
     public Integer getProveedor_ID() {
         return proveedor_ID;
     }
@@ -20,8 +20,7 @@ public class Proveedor {
     public void setProveedor_ID(Integer proveedor_ID) {
         this.proveedor_ID = proveedor_ID;
     }
-    Boolean status;
-
+   
     public String getNombre() {
         return nombre;
     }
@@ -62,12 +61,12 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

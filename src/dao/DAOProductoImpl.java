@@ -23,7 +23,7 @@ public class DAOProductoImpl extends Conexion implements DAOProducto {
         try{
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
-                    "insert into evento(nombre,descripcion,precio,unidad_medida,"
+                    "insert into producto(nombre,descripcion,precio,unidad_medida,"
                             + "categoria) values(?,?,?,?,?)");
             st.setString(1, pro.getNombre());
             st.setString(2, pro.getDescripcion());
@@ -89,7 +89,18 @@ public class DAOProductoImpl extends Conexion implements DAOProducto {
 
     @Override
     public void baja(Producto pro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "update proveedor set status = ? where proveedor_ID = ?");
+            st.setString(1, pro.getStatus());
+            st.setInt(2, pro.getProductoID());
+            st.executeUpdate();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
 
     @Override

@@ -6,7 +6,12 @@
 package dao;
 
 import interfaces.DAOUsuario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import projectadmin.Producto;
 import projectadmin.Usuario;
 
 /**
@@ -17,22 +22,92 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
 
     @Override
     public void registrar(Usuario usu) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "insert into usuario(nombre,apellido,telefono,correo,"
+                            + "tipo_Usuario,usuario_Login, contraseña)"
+                            + " values(?,?,?,?,?,?,?)");
+            st.setString(1, usu.getNombre());
+            st.setString(2, usu.getApellido());
+            st.setInt(3, usu.getTelefono());
+            st.setString(4, usu.getCorreo());
+            st.setString(5, usu.getTiposuario());
+            st.setString(6, usu.getUsuarioLogin());
+            st.setString(7, usu.getPassword());
+            st.executeQuery();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
 
     @Override
     public List<Usuario> verUsuario() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Usuario> lista = null;
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement("select * from usuario");
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Usuario usu = new Usuario();
+                usu.setUsuarioID(rs.getInt("Usuario_ID"));
+                usu.setNombre(rs.getString("Nombre"));
+                usu.setApellido(rs.getString("Descripcion"));
+                usu.setTelefono(rs.getInt("Telefono"));
+                usu.setCorreo(rs.getString("Correo"));
+                usu.setTiposuario(rs.getString("Tipo_Usuario"));
+                usu.setUsuarioLogin(rs.getString("Usuario_Login"));
+                usu.setPassword(rs.getString("Contraseña"));
+            }
+            rs.close();
+            st.close();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
+        return lista;
     }
 
     @Override
     public void modificar(Usuario usu) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "update proveedor set nombre = ?, apellido = ?, telefono = ?,"
+                    + " correo = ?, tipo_Usuario = ?, usuario_Login = ?,"
+                            + " contraseña = ? where usuario_ID = ?");
+            st.setString(1, usu.getNombre());
+            st.setString(2, usu.getApellido());
+            st.setInt(3, usu.getTelefono());
+            st.setString(4, usu.getCorreo());
+            st.setString(5, usu.getTiposuario());
+            st.setString(6, usu.getUsuarioLogin());
+            st.setString(7, usu.getPassword());
+            st.setInt(8, usu.getUsuarioID());
+            st.executeUpdate();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
 
     @Override
     public void eliminar(Usuario usu) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+            "delete from usuario where usuario_ID = ?");
+            st.setInt(1, usu.getUsuarioID());
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
     }
     
 }

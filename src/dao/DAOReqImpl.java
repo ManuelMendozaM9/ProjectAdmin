@@ -5,10 +5,34 @@
  */
 package dao;
 
+import interfaces.DAOReq;
+import java.util.List;
+import projectadmin.Requisicion;
+
 /**
  *
  * @author Manuel
  */
-public class DAOReqImpl {
+public class DAOReqImpl extends Conexion implements DAOReq {
+
+    @Override
+    public void registrar(Requisicion req) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Requisicion> verRequisicion() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar(Requisicion req) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Requisicion req) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

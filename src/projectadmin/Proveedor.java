@@ -11,7 +11,15 @@ package projectadmin;
  */
 public class Proveedor {
     String nombre, direccion, RFC, formaPago;
-    Integer telefono;
+    Integer telefono, proveedor_ID;
+
+    public Integer getProveedor_ID() {
+        return proveedor_ID;
+    }
+
+    public void setProveedor_ID(Integer proveedor_ID) {
+        this.proveedor_ID = proveedor_ID;
+    }
     Boolean status;
 
     public String getNombre() {

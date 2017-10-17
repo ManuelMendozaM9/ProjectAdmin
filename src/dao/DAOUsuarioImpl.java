@@ -113,7 +113,7 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
     }
 
     @Override
-    public boolean ingresar(Usuario usu) throws Exception {
+    public boolean ingresar(String usuario, String pass) throws Exception {
         boolean flag = false;
         try{
             Connection c = Conexion.getConnection();
@@ -121,8 +121,8 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
                     "select usuario_ID from usuario"
                             + "where usuario_Login = ? "
                             + "and contraseña = ?");
-            st.setString(1, usu.getUsuarioLogin());
-            st.setString(2, usu.getPassword());
+            st.setString(1, usuario);
+            st.setString(2, pass);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 flag = true;

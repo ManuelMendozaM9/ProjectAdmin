@@ -134,6 +134,5 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
         }
         return flag;
     }
-    
 }
 

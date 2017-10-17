@@ -27,6 +27,16 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                frmLogin frmLog = new frmLogin();
+                frmLog.setLocationRelativeTo(frmLog);
+                frmLog.setVisible(true);
+                frmLog.setTitle("Login");
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,15 +166,8 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     
+    // Variables globales y sus metodos
     String usuario, password;
-
-    public Usuario getUsu() {
-        return usu;
-    }
-
-    public void setUsu(Usuario usu) {
-        this.usu = usu;
-    }
 
     public String getUsuario() {
         return usuario;
@@ -174,5 +177,12 @@ public class frmLogin extends javax.swing.JFrame {
         this.usuario = usuario;
     }
     
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 }

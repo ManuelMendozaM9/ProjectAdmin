@@ -17,4 +17,6 @@ public interface DAOReq {
     public List<Requisicion> verRequisicion() throws Exception;
     public void modificar(Requisicion req) throws Exception;
     public void eliminar(Requisicion req) throws Exception;
+    public void aprobar(Requisicion req) throws Exception;
+    public void rechazar(Requisicion req) throws Exception;
 }

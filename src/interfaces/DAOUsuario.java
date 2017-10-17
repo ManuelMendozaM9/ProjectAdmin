@@ -7,6 +7,7 @@ package interfaces;
 
 import java.util.List;
 import projectadmin.Usuario;
+import frames.frmLogin;
 
 /**
  *
@@ -17,5 +18,5 @@ public interface DAOUsuario {
     public List<Usuario> verUsuario() throws Exception;
     public void modificar(Usuario usu) throws Exception;
     public void eliminar(Usuario usu) throws Exception;
-    
+    public boolean ingresar(Usuario usu) throws Exception;    
 }

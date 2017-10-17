@@ -10,7 +10,7 @@ package projectadmin;
  * @author Manuel
  */
 public class Usuario {
-    Integer usuarioID, telefono;
+    Integer usuarioID, telefono, flag;
     String nombre, apellido, correo, tiposuario, usuarioLogin, password; 
 
     public Integer getUsuarioID() {
@@ -75,6 +75,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
    
 }

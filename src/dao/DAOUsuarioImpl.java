@@ -5,13 +5,14 @@
  */
 package dao;
 
+import frames.frmLogin;
 import interfaces.DAOUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import projectadmin.Producto;
+import javax.swing.JOptionPane;
 import projectadmin.Usuario;
 
 /**
@@ -103,11 +104,36 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
             PreparedStatement st = c.prepareStatement(
             "delete from usuario where usuario_ID = ?");
             st.setInt(1, usu.getUsuarioID());
+            st.executeQuery();
         }catch(Exception e){
             throw e;
         }finally{
             this.cerrar();
         }
     }
+
+    @Override
+    public boolean ingresar(Usuario usu) throws Exception {
+        boolean flag = false;
+        try{
+            Connection c = Conexion.getConnection();
+            PreparedStatement st = c.prepareStatement(
+                    "select usuario_ID from usuario"
+                            + "where usuario_Login = ? "
+                            + "and contraseña = ?");
+            st.setString(1, usu.getUsuarioLogin());
+            st.setString(2, usu.getPassword());
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                flag = true;
+            }
+        }catch(Exception e){
+            throw e;
+        }finally{
+            this.cerrar();
+        }
+        return flag;
+    }
     
 }
+

@@ -119,13 +119,14 @@ public class frmLogin extends javax.swing.JFrame {
     
     private void btnIngresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyTyped
         frmPral frm = new frmPral();
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            boolean flag = false;            
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){            
             usuario = txtUsuario.getText();
             password = txtPass.getText();
             try{
-                if(flag){
-                    flag = dao.ingresar(usuario, password);
+                usu.setUsuarioLogin(usuario);
+                usu.setPassword(password);
+                Integer flag = dao.ingresar(usu);
+                if(flag == 1){
                     frm.setLocationRelativeTo(frm);
                     frm.setVisible(true);
                 }else{
@@ -140,12 +141,13 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         frmPral frm = new frmPral();
-        boolean flag = false;
         usuario = txtUsuario.getText();
         password = txtPass.getText();
         try{
-            if(flag){
-                flag = dao.ingresar(usuario, password);
+            usu.setUsuarioLogin(usuario);
+            usu.setPassword(password);
+            Integer flag = dao.ingresar(usu);
+            if(flag == 1){
                 frm.setLocationRelativeTo(frm);
                 frm.setVisible(true);
             }else{
@@ -166,7 +168,7 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     
-    // Variables globales y sus metodos
+    //Variables globales y sus metodos
     String usuario, password;
 
     public String getUsuario() {
@@ -176,7 +178,7 @@ public class frmLogin extends javax.swing.JFrame {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -184,5 +186,6 @@ public class frmLogin extends javax.swing.JFrame {
     public void setPassword(String password) {
         this.password = password;
     }
+    
     
 }

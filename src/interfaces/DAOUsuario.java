@@ -18,5 +18,5 @@ public interface DAOUsuario {
     public List<Usuario> verUsuario() throws Exception;
     public void modificar(Usuario usu) throws Exception;
     public void eliminar(Usuario usu) throws Exception;
-    public boolean ingresar(String usuario, String pass) throws Exception;    
+    public Integer ingresar(Usuario usu) throws Exception;    
 }

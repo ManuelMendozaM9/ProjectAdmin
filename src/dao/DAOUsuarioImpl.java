@@ -113,26 +113,34 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
     }
 
     @Override
-    public boolean ingresar(String usuario, String pass) throws Exception {
-        boolean flag = false;
+    public Integer ingresar(Usuario usu) throws Exception {
+        boolean flag;
+        int bandera;
         try{
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
-                    "select usuario_ID from usuario"
-                            + "where usuario_Login = ? "
-                            + "and contraseña = ?");
-            st.setString(1, usuario);
-            st.setString(2, pass);
+                    "select usuario_ID from usuario " +
+                    "where usuario_Login = '?' " +
+                    "and contraseña = '?';)");
+            st.setString(1, usu.getUsuarioLogin());
+            st.setString(2, usu.getPassword());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 flag = true;
+            }else{
+                flag = false;
             }
         }catch(Exception e){
             throw e;
         }finally{
             this.cerrar();
         }
-        return flag;
+        if(flag){
+            bandera = 1;
+        }else{
+            bandera = 0;
+        }
+        return bandera;
     }
 }
 

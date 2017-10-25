@@ -120,8 +120,8 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
                     "select usuario_ID from usuario " +
-                    "where usuario_Login = '?' " +
-                    "and contraseña = '?';)");
+                    "where usuario_Login = ? " +
+                    "and contraseña = ?;");
             st.setString(1, usu.getUsuarioLogin());
             st.setString(2, usu.getPassword());
             ResultSet rs = st.executeQuery();
@@ -130,15 +130,15 @@ public class DAOUsuarioImpl extends Conexion implements DAOUsuario {
             }else{
                 flag = false;
             }
+            if(flag){
+                bandera = 1;
+            }else{
+                bandera = 0;
+            }
         }catch(Exception e){
             throw e;
         }finally{
             this.cerrar();
-        }
-        if(flag){
-            bandera = 1;
-        }else{
-            bandera = 0;
         }
         return bandera;
     }

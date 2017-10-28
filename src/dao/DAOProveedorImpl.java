@@ -45,8 +45,8 @@ public class DAOProveedorImpl extends Conexion implements DAOProveedor {
         try{
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
-                    "update proveedor set nombre = '?', direccion = '?', "
-                            + "telefono = '?', forma_pago = '?', status = '?'"
+                    "update proveedor set nombre = ?, direccion = ?, "
+                            + "telefono = ?, forma_pago = ?, status = ?"
                             + " where proveedor_ID = ?");
             st.setString(1, prov.getNombre());
             st.setString(2, prov.getDireccion());

@@ -71,8 +71,8 @@ public class DAOProductoImpl extends Conexion implements DAOProducto {
         try{
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
-                    "update producto set nombre = '?', descripcion = '?', "
-                            + "precio = '?', unidad_medida = ?', categoria = '?'"
+                    "update producto set nombre = ?, descripcion = ?, "
+                            + "precio = ?, unidad_medida = ?, categoria = ?"
                             + " where producto_ID = ?");
             st.setString(1, pro.getNombre());
             st.setString(2, pro.getDescripcion());
@@ -93,7 +93,7 @@ public class DAOProductoImpl extends Conexion implements DAOProducto {
         try{
             Connection c = Conexion.getConnection();
             PreparedStatement st = c.prepareStatement(
-                    "update proveedor set status = '?' where proveedor_ID = ?");
+                    "update proveedor set status = ? where proveedor_ID = ?");
             st.setString(1, pro.getStatus());
             st.setInt(2, pro.getProductoID());
             st.executeUpdate();

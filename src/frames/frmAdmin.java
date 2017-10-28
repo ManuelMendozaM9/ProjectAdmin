@@ -9,12 +9,12 @@ package frames;
  *
  * @author Manuel
  */
-public class frmPral extends javax.swing.JFrame {
+public class frmAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form frmPral
      */
-    public frmPral() {
+    public frmAdmin() {
         initComponents();
     }
 

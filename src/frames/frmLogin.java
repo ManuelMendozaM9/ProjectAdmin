@@ -118,7 +118,7 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnIngresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyTyped
-        frmPral frm = new frmPral();
+        frmAdmin frm = new frmAdmin();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){            
             usuario = txtUsuario.getText();
             password = txtPass.getText();
@@ -140,7 +140,7 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarKeyTyped
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        frmPral frm = new frmPral();
+        frmAdmin frm = new frmAdmin();
         usuario = txtUsuario.getText();
         password = txtPass.getText();
         try{

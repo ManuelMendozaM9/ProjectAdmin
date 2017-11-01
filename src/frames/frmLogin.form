@@ -88,6 +88,9 @@
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPass">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPassKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIngresar">
       <Properties>

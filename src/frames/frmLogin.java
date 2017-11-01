@@ -63,6 +63,12 @@ public class frmLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña:");
 
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPassKeyTyped(evt);
+            }
+        });
+
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,29 +124,45 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnIngresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyTyped
-        frmAdmin frm = new frmAdmin();
+        frmAdmin frmAdmin = new frmAdmin();
+        frmAprobador frmAproba = new frmAprobador();
+        frmRequisitor frmRequisitor = new frmRequisitor();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){            
-            usuario = txtUsuario.getText();
-            password = txtPass.getText();
             try{
+                usuario = txtUsuario.getText();
+                password = txtPass.getText();
                 usu.setUsuarioLogin(usuario);
                 usu.setPassword(password);
                 Integer flag = dao.ingresar(usu);
                 if(flag == 1){
-                    frm.setLocationRelativeTo(frm);
-                    frm.setVisible(true);
+                    if(usuario.equals("admin")){
+                        frmAdmin.setLocationRelativeTo(frmAdmin);
+                        frmAdmin.setVisible(true);
+                    }
+                    if(usuario.equals("supervisor") || usuario.equals("gerente")
+                    || usuario.equals("contrallor") || usuario.equals("ceo"))
+                    {
+                        frmAproba.setLocationRelativeTo(frmAproba);
+                        frmAproba.setVisible(true);
+                    }
+                    if(usuario.equals("requisitor")){
+                        frmRequisitor.setLocationRelativeTo(frmRequisitor);
+                        frmRequisitor.setVisible(true);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(rootPane, 
                             "Usuario o contraseña incorrecta");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }      
+            }          
         }
     }//GEN-LAST:event_btnIngresarKeyTyped
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        frmAdmin frm = new frmAdmin();
+        frmAdmin frmAdmin = new frmAdmin();
+        frmAprobador frmAproba = new frmAprobador();
+        frmRequisitor frmRequisitor = new frmRequisitor();
         usuario = txtUsuario.getText();
         password = txtPass.getText();
         try{
@@ -148,8 +170,21 @@ public class frmLogin extends javax.swing.JFrame {
             usu.setPassword(password);
             Integer flag = dao.ingresar(usu);
             if(flag == 1){
-                frm.setLocationRelativeTo(frm);
-                frm.setVisible(true);
+                if(usuario.equals("admin")){
+                    frmAdmin.setLocationRelativeTo(frmAdmin);
+                    frmAdmin.setVisible(true);
+                    this.setVisible(false);
+                }
+                if(usuario.equals("supervisor") || usuario.equals("gerente")
+                || usuario.equals("contrallor") || usuario.equals("ceo"))
+                {
+                    frmAproba.setLocationRelativeTo(frmAproba);
+                    frmAproba.setVisible(true);
+                }
+                if(usuario.equals("requisitor")){
+                    frmRequisitor.setLocationRelativeTo(frmRequisitor);
+                    frmRequisitor.setVisible(true);
+                }
             }else{
                 JOptionPane.showMessageDialog(rootPane, 
                         "Usuario o contraseña incorrecta");
@@ -158,6 +193,42 @@ public class frmLogin extends javax.swing.JFrame {
             Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }      
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
+        frmAdmin frmAdmin = new frmAdmin();
+        frmAprobador frmAproba = new frmAprobador();
+        frmRequisitor frmRequisitor = new frmRequisitor();
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){            
+            try{
+                usuario = txtUsuario.getText();
+                password = txtPass.getText();
+                usu.setUsuarioLogin(usuario);
+                usu.setPassword(password);
+                Integer flag = dao.ingresar(usu);
+                if(flag == 1){
+                    if(usuario.equals("admin")){
+                        frmAdmin.setLocationRelativeTo(frmAdmin);
+                        frmAdmin.setVisible(true);
+                    }
+                    if(usuario.equals("supervisor") || usuario.equals("gerente")
+                    || usuario.equals("contrallor") || usuario.equals("ceo"))
+                    {
+                        frmAproba.setLocationRelativeTo(frmAproba);
+                        frmAproba.setVisible(true);
+                    }
+                    if(usuario.equals("requisitor")){
+                        frmRequisitor.setLocationRelativeTo(frmRequisitor);
+                        frmRequisitor.setVisible(true);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, 
+                            "Usuario o contraseña incorrecta");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }          
+        }
+    }//GEN-LAST:event_txtPassKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
